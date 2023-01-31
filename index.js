@@ -1,17 +1,20 @@
-const express = require('express')
-const app = express()
-const {pokemonRouter} = require('./routes/pokemon')
+const express = require("express");
+var cors = require('cors')
+
+const app = express();
+const { pokemonRouter } = require("./routes/pokemon");
 
 app.use(express.json());
+app.use(cors())
 
-const port = 3000
+const port = 8082;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
-app.use("/pokemon", pokemonRouter)
+app.use("/pokemon", pokemonRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
