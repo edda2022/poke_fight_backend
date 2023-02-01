@@ -1,8 +1,12 @@
 const axios = require('axios');
 
 getPokemons = async (req, res, next) => {
+    console.log(req.query)
+    const {offset} = req.query;
+    const {limit} = req.query
+    
     try {
-        const pokemons = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20")
+        const pokemons = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
         res.json(pokemons.data)
     }
     catch (err) {
