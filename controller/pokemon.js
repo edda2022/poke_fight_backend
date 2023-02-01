@@ -13,10 +13,9 @@ getPokemons = async (req, res, next) => {
 
 getPokemon = async (req, res, next) => {
     const {pokemonQuery} = req.params;
-    console.log(pokemonQuery)
     try {
         const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery}`)
-        res.json(pokemon.data.types)
+        res.json(pokemon.data)
     }
     catch (err) {
         res.status(500).send('something went wrong')
@@ -25,7 +24,6 @@ getPokemon = async (req, res, next) => {
 
 getPokemonTypes = async (req, res, next) => {
     const {pokemonQuery, types} = req.params;
-    console.log(req.params)
      try {
          const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery}`)
          res.json(pokemon.data.types)
