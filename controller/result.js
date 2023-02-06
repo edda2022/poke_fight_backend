@@ -7,7 +7,7 @@ const getResults = async (req, res) => {
     res.json(fightResults);
   } catch (err) {
     res.status(500).send(err.messages);
-    console.log(err)
+    console.log(err);
   }
 };
 
@@ -22,31 +22,34 @@ const getResults = async (req, res) => {
 //   };
 
 const createResult = async (req, res) => {
-    console.log(req.body)
-    const { id_PlayerA, pokemon_name_playerA, id_PlayerB, pokemon_name_playerB, scorePlayerA, scorePlayerB} = req.body;
-    try {
-      const fightResult = await FightResult.create({id_PlayerA, pokemon_name_playerA, id_PlayerB, pokemon_name_playerB, scorePlayerA, scorePlayerB});
-      res.json(fightResult);
-    } catch (err) {
-      res.status(500).send(err.messages);
-      console.log(err)
-    }
-  };
+  console.log(req.body);
+  const { id_PlayerA, pokemon_name_playerA, scorePlayerA } = req.body;
+  try {
+    const fightResult = await FightResult.create({
+      id_PlayerA,
+      pokemon_name_playerA,
+      scorePlayerA,
+    });
+    res.json(fightResult);
+  } catch (err) {
+    res.status(500).send(err.messages);
+    console.log(err);
+  }
+};
 
-  const deleteResult = async (req, res) => {
-
-    const {id} = req.params
-         try {
-           const fightResult = await FightResult.findByIdAndDelete({_id: id});
-           res.json(fightResult);
-         } catch (err) {
-           res.status(500).send(err.messages);
-           console.log(err)
-         }
-       };
+const deleteResult = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const fightResult = await FightResult.findByIdAndDelete({ _id: id });
+    res.json(fightResult);
+  } catch (err) {
+    res.status(500).send(err.messages);
+    console.log(err);
+  }
+};
 
 module.exports = {
   getResults,
   createResult,
-  deleteResult
+  deleteResult,
 };
