@@ -1,7 +1,8 @@
 const axios = require('axios');
 
+
 getPokemons = async (req, res, next) => {
-    console.log(req.query)
+    // console.log(req.query)
     const {offset} = req.query;
     const {limit} = req.query
     
@@ -11,7 +12,6 @@ getPokemons = async (req, res, next) => {
     }
     catch (err) {
         res.status(500).send('something went wrong')
-        console.log(err)
     }
 }
 
@@ -36,6 +36,8 @@ getPokemonTypes = async (req, res, next) => {
          res.status(500).send('something went wrong')
      }
 }
+
+
 
 module.exports = {
     getPokemons,
