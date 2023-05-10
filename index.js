@@ -10,12 +10,6 @@ const { fightResultRouter } = require("./routes/result");
 
 app.use(express.json());
 // app.use(cors())
-app.use(
-  cors({
-    origin: ["https://pokefight-j9bg.onrender.com/", "http://localhost:3000"],
-    credentials: true,
-  })
-);
 
 const port = 8082;
 
@@ -26,6 +20,14 @@ app.get("/", (req, res) => {
 app.use("/pokemon", pokemonRouter);
 app.use("/fightresult", fightResultRouter);
 
+app.use((req, res, next) => {
+  res.header("https://pokefight-j9bg.onrender.com/");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
