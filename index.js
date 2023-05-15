@@ -10,18 +10,18 @@ const { fightResultRouter } = require("./routes/result");
 
 app.use(express.json());
 // app.use(cors())
-// app.use(
-//   cors({
-//     origin: "https://pokefight-j9bg.onrender.com",
-//     methods: ["GET", "POST"],
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: "https://pokefight-j9bg.onrender.com",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 //const port = 8082;
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   next();
+// });
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
